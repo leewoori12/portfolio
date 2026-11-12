@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나의 포트폴리오</title>
+    <!-- 웹 폰트 (Pretendard) -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+        html{
+            scroll-behavior: smooth;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+            word-break: keep-all;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #111111;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* 1920 x 3000 Canvas Container */
+        .container {
+            width: 1920px;
+            height: 3000px;
+            background-color: #ffffff;
+            position: relative;
+            padding: 80px 240px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Header Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 26px;
+            font-weight: 700;
+            color: #111111;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background-color: #111111;
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 48px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #666666;
+            font-size: 20px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #111111;
+        }
+
+        /* Hero Title */
+        .hero-title {
+            margin-top: 100px;
+            font-size: 80px;
+            font-weight: 800;
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            color: #111111;
+        }
+
+        /* About My Way Dark Card */
+        .dark-card {
+            width: 100%;
+            height: 480px;
+            background-color: #161c28;
+            border-radius: 32px;
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 60px;
+        }
+
+        .dark-card .subtitle {
+            color: #5c82db;
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .dark-card .title {
+            color: #ffffff;
+            font-size: 54px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            letter-spacing: -0.01em;
+        }
+
+        .dark-card .description {
+            color: #9aa0a6;
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+        /* Profile & Intro Section */
+        .about-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 120px;
+            gap: 80px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 36px;
+            color: #111111;
+        }
+
+        .about-text .main-desc {
+            font-size: 24px;
+            line-height: 1.6;
+            color: #555555;
+            margin-bottom: 60px;
+        }
+
+        .traits-grid {
+            display: flex;
+            gap: 60px;
+        }
+
+        .trait-item {
+            flex: 1;
+        }
+
+        .trait-item h3 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #111111;
+        }
+
+        .trait-item p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #777777;
+        }
+
+        /* Profile Image Placeholder */
+        .profile-card {
+            width: 480px;
+            height: 480px;
+            background-color: #e8eff8;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+            flex-shrink: 0;
+        }
+
+        .profile-card .tag {
+            font-size: 18px;
+            font-weight: 600;
+            color: #6c7a89;
+            margin-bottom: 20px;
+            letter-spacing: 0.05em;
+        }
+
+        .profile-card .placeholder-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333333;
+            margin-bottom: 12px;
+        }
+
+        .profile-card .placeholder-sub {
+            font-size: 18px;
+            color: #777777;
+        }
+
+        /* Experience Section */
+        .experience-section {
+            margin-top: 140px;
+        }
+
+        .section-title {
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: #111111;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .card-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-image-placeholder {
+            width: 100%;
+            height: 380px;
+            background-color: #f1f4f8;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px;
+            margin-bottom: 28px;
+        }
+
+        .card-image-placeholder.empty {
+            background-color: transparent;
+        }
+
+        .card-image-placeholder .tag {
+            font-size: 16px;
+            font-weight: 600;
+            color: #7a8b9e;
+            margin-bottom: 16px;
+            letter-spacing: 0.05em;
+        }
+
+        .card-image-placeholder .placeholder-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333333;
+            margin-bottom: 8px;
+        }
+
+        .card-image-placeholder .placeholder-sub {
+            font-size: 16px;
+            color: #888888;
+        }
+
+        .card-info h4 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #111111;
+        }
+
+        .card-info p {
+            font-size: 18px;
+            color: #777777;
+            line-height: 1.5;
+        }
+
+        /* Footer / Contact Section */
+        footer {
+            margin-top: 120px;
+            margin-bottom: 40px;
+            padding-top: 60px;
+        }
+
+        .footer-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: #111111;
+        }
+
+        .contact-grid {
+            display: flex;
+            gap: 120px;
+            margin-bottom: 80px;
+        }
+
+        .contact-item label {
+            display: block;
+            font-size: 16px;
+            color: #888888;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .contact-item .value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #111111;
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            font-size: 20px;
+            font-weight: 700;
+            color: #111111;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div>
+            <!-- 헤더 네비게이션 -->
+            <header>
+                <div class="logo">
+                    <div class="logo-icon">P</div>
+                    <span>나의 포트폴리오</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#about">소개</a></li>
+                        <li><a href="#experience">경험</a></li>
+                        <li><a href="#contact">연락처</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <!-- 히어로 헤드라인 -->
+            <h1 class="hero-title">
+                나만의 시선으로,<br>
+                더 나은 방향을 찾습니다.
+            </h1>
+
+            <!-- 다크 카카오 카드 영역 -->
+            <div class="dark-card">
+                <div class="subtitle">ABOUT MY WAY</div>
+                <div class="title">파고들고, 이어붙이고, 끝까지 다듬다.</div>
+                <div class="description">디자이너로서 지키는 세 가지 일하는 방식</div>
+            </div>
+
+            <!-- 자기소개 및 프로필 섹션 -->
+            <section class="about-section" id="about">
+                <div class="about-text">
+                    <h2>안녕하세요, 이우리입니다.</h2>
+                    <p class="main-desc">
+                        저는 맡은 일을 끝까지 책임지고 완성하는 것을 중요하게 생각합니다. 새로운 것을 배우는 데 적극적이며, 작은 부분까지 꼼꼼하게 살피 더 나은 결과물을 만들기 위해 노력합니다. 다양한 경험을 통해 꾸준히 성장하며 저만의 디자인 감각과 역량을 키워가고 있습니다.
+                    </p>
+                    <div class="traits-grid">
+                        <div class="trait-item">
+                            <h3>끈기</h3>
+                            <p>포기하지 않고 끝까지 문제를 해결하기 위해 최선을 다합니다.</p>
+                        </div>
+                        <div class="trait-item">
+                            <h3>성실함</h3>
+                            <p>작은 일이라도 소홀히 하지 않고 맡은 바 책임을 다합니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-card">
+                    <div class="tag">PROFILE</div>
+                    <div class="placeholder-title">[프로필 사진]</div>
+                    <div class="placeholder-sub">자신 또는 나를 표현하는 이미지로 교체</div>
+                </div>
+            </section>
+
+            <!-- 경험 섹션 -->
+            <section class="experience-section" id="experience">
+                <h2 class="section-title">경험으로 전하는 나의 이야기</h2>
+                <div class="cards-grid">
+                    <!-- 카드 1 -->
+                    <div class="card-item">
+                        <div class="card-image-placeholder"></div>
+                        <div class="card-info">
+                            <h4>01. 웹사이트 리뉴얼 프로젝트</h4>
+                            <p>브랜드의 특징을 살려 새로운 웹페이지 디자인 제작</p>
+                        </div>
+                    </div>
+
+                    <!-- 카드 2 -->
+                    <div class="card-item">
+                        <div class="card-image-placeholder">
+                            <div class="tag">EXPERIENCE 01</div>
+                            <div class="placeholder-title">[협업 과정 이미지]</div>
+                            <div class="placeholder-sub">함께했던 과정과 열정을 보여주세요</div>
+                        </div>
+                        <div class="card-info">
+                            <h4>02. 그래픽 디자인 제작</h4>
+                            <p>색상과 포맷, 이미지의 조화를 고려하는 디자인 제작</p>
+                        </div>
+                    </div>
+
+                    <!-- 카드 3 -->
+                    <div class="card-item">
+                        <div class="card-image-placeholder">
+                            <div class="tag">EXPERIENCE 02</div>
+                            <div class="placeholder-title">[도전의 기록]</div>
+                            <div class="placeholder-sub">성과와 배움을 보여주세요</div>
+                        </div>
+                        <div class="card-info">
+                            <h4>03. 새로운 분야에 도전</h4>
+                            <p>새로운 프로그램을 익히고 다양한 디자인 기획 연습</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 푸터 / 연락처 섹션 -->
+        <footer id="contact">
+            <h2 class="footer-title">다음 이야기를 함께 만들어가고 싶습니다.</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <label>이메일</label>
+                    <div class="value">lwr1203@naver.com</div>
+                </div>
+                <div class="contact-item">
+                    <label>연락처</label>
+                    <div class="value">010-8514-6130</div>
+                </div>
+                <div class="contact-item">
+                    <label>관심 분야</label>
+                    <div class="value">디자인</div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>[포트폴리오 링크]</span>
+                <span>[활동 채널]</span>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
